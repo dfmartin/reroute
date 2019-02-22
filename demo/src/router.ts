@@ -13,7 +13,7 @@ export interface Route {
 
 class RouterClass {
     private _interval: any
-    private _routes: Route[]
+    private _routes: Route[] = []
 
     public mode: RouterMode
     public root: string
@@ -69,9 +69,11 @@ class RouterClass {
     }
 
     public listen = () => {
-        let current = this.getFragment();
+        let current = this.getFragment()
         const fn = () => {
-            if (current !== this.getFragment()) {
+            const frag = this.getFragment()
+            //console.log(current, frag)
+            if (current !== frag) {
                 current = this.getFragment()
                 this.check(current)
             }
